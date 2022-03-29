@@ -1,3 +1,52 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
 /* VARIABLES */
 :root {
     /*  Primary */
@@ -16,6 +65,7 @@
     --Gradient-Very-dark-gray-blue: hsl(237, 17%, 21%);
     --Gradient-Very-dark-desaturated-blue: hsl(237, 23%, 32%);
 }
+
 
 /* GLOBAL STYLES */
 *,
@@ -82,33 +132,49 @@ body,html{
     display: flex;
     align-items: center;
 }
+.navbar__left{
+    flex-grow: 1;
+    height: 100%;
+    padding-top: 5%;
+}
 .navbar__item{
     position: relative;
+    display: inline-block;
+    height: 100%;
     margin: 0 3%;
     font-size: 1.25rem;
     list-style: none;
     text-decoration: none;
     cursor: pointer;
 }
+.navbar__item a{
+    text-decoration: none;
+    color: var(--grayish-blue);
+}
 .navbar__sublist{
     position: absolute;
-    width: 175%;
+    width: 200%;
+    margin-top: 10px;
     padding: 10px 0 10px 10px;
     border: 1px solid white;
     border-radius: 10%;
     background: var(--white);
-    visibility: hidden;
+    display: none;
 }
-.navbar__sublist--visible{
-    visibility: visible;
+.navbar__item:hover .navbar__sublist{
+    display: block;
+    
+}
+.navbar__left .navbar__item:hover{
+        color: var(--white);
+    text-decoration: underline #FF3028;
 }
 .navbar__subitem{
     list-style: none;
     text-decoration: none;
     color: var(--very-dark-black-blue);
-}
-.navbar__left{
-    flex-grow: 1;
+    font-size: 0.95rem;
+    line-height: 150%;
 }
 .navbar__item--button{
     display: inline-block;
@@ -121,6 +187,10 @@ body,html{
     background-color: var(--white);
     border-radius: 16px;
     color: var(--Gradient-light-red);
+}
+.navbar__item--button:hover{
+    background: var(--very-light-red);
+    color: var(--white);
 }
 .navbar__right .navbar__item{
     margin: 0 20px;
@@ -166,10 +236,18 @@ body,html{
     color: var(--Gradient-light-red);
     font-weight: bold;
 }
+.hero-image__button--background-solid:hover{
+    background: var(--very-light-red);
+    color: var(--white)
+}
 .hero-image__button--background-transparent{
     background: none;
     color: var(--white);
     font-weight: bold;
+}
+.hero-image__button--background-transparent:hover{
+    background: var(--white);
+    color: var(--very-light-red)
 }
 
 /* MAIN */
@@ -177,6 +255,7 @@ body,html{
     width: 100%;
     height: auto;
 }
+/* Section One */
 .section-one{
     position: relative;
     width: 100%;
@@ -233,12 +312,104 @@ body,html{
     line-height: 150%;
 }
 
-
-
+/* Section Two */
 .section-two{
     position: relative;
     width: 100%;
+    height: 60vh;
+    display: grid;
+    align-items: center;
+    margin: 15vh 0 0 0;
+    grid-template-columns: repeat(2,1fr);
+}
+.section-two__container{
+    position: absolute;
+    width: 100%;
+    height: 40vh;
+    background: var(--very-dark-black-blue);
+    border-top-right-radius: 15%;
+    border-bottom-left-radius: 15%;
+    background-image: url(./images/bg-pattern-circles.svg);
+    background-size: 50%;
+    background-position: left;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    overflow: visible;
+}
+.section-two__image{
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: grid;
+}
+.section-two__image img{
+    width: 40%;
+    height: 65%;
+    align-self: center;
+    justify-self: center;
+}
+.section-two__content{
+    width: 80%;
+    z-index: 10;
+    align-self: center;
+    justify-self: center;
+    
+}
+.section-two__content--primary{
+    font-size: 2rem;
+    margin: 5% 0;
+    color: var(--white);
+}
+.section-two__content--secondary{
+    font-size: 1.1rem;
+    color: var(--grayish-blue);
+}
+
+/* Section three */
+.section-three{
+    position: relative;
+    width: 100%;
     height: 100vh;
+}
+.section-three__container{
+    width: 100%;
+    height: 100%;
+    /* padding-top: 5%; */
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.section-three__container-image{
+    width: 100%;
+    height: 100%;
+    transform: translateX(-15%);
+}
+.section-three__image{
+    width: 100%;
+    height: 100%;
+    background-image: url(./images/illustration-laptop-mobile.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.section-three__content{
+    align-self: center;
+    justify-self: center;
+}
+.section-three__content-container{
+    width: 70%;
+    height: 100%;
+    margin: auto;
+}
+.section-three__content--primary{
+    padding-bottom: 7.5%;
+    font-size: 1.75rem;
+    color: var(--very-dark-blue);
+}
+.section-three__content--secondary{
+    padding-bottom: 7.5%;
+    color: var(--very-dark-grayish-blue);
+    font-size: 1.25rem;
+    line-height: 150%;
 }
 
 /* FOOTER */
@@ -278,4 +449,7 @@ body,html{
     padding-bottom: 15%;
     font-size: 1.1rem;
     color: var(--grayish-blue);
+}
+.footer__item:hover{
+    text-decoration: underline  var(--grayish-blue);
 }
